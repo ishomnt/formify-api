@@ -1,0 +1,33 @@
+<?php
+
+use App\Models\Form;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('questions', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(Form::class)->constrained()->cascadeOnDelete();
+            $table->string('name')->nullable();
+            $table->enum('choice_type', ['short answer', 'paragraph', 'date', 'time', 'datetime', 'multiple choice', 'dropdown', 'checkboxes'])->nullable();
+            $table->string('choices')->nullable();
+            $table->boolean('is_required')->default(false);
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('questions');
+    }
+};
