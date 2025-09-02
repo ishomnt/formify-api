@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Form::class)->constrained()->cascadeOnDelete();
             $table->string('name')->nullable();
-            $table->enum('choice_type', ['short answer', 'paragraph', 'date', 'time', 'datetime', 'multiple choice', 'dropdown', 'checkboxes'])->default('text');
+            $table->enum('choice_type', ['short answer', 'paragraph', 'date', 'time', 'datetime', 'multiple choice', 'dropdown', 'checkboxes'])->nullable();
             $table->string('choices')->nullable();
             $table->boolean('is_required')->default(false);
             $table->timestamps();
