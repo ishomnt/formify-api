@@ -19,7 +19,7 @@ class QuestionResource extends JsonResource
             'form_id'=> $this->form_id,
             'name'=> $this->name,
             'choice_type'=> $this->choice_type,
-            'choices'=> $this->choices,
+            'choices'=> json_decode($this->choices),
             'is_required'=> $this->is_required,
         ];
     }
