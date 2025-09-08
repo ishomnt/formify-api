@@ -19,9 +19,6 @@ class QuestionController extends Controller
         DB::beginTransaction();
         try {
             $form = Form::where("slug", $slug)->first();
-            if(!$form){
-                return $this->responseWithError('Form not found ', 404, 'form not found');
-            }
             $question = Question::create([
                 'form_id' => $form->id,
                 'name' => $request->name,
@@ -51,10 +48,6 @@ class QuestionController extends Controller
     public function destroy(String $slug, Question $question)
     {
         try {
-            $form = Form::where('slug', $slug)->first();
-            if (!$form) {
-                return $this->responseWithError('Form not found', 404, 'form not found');
-            }
             $question->delete();
             return $this->responseWithError('Remove question success', 200);
         } catch (\Exception $e) {
