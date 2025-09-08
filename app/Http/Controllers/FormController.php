@@ -29,14 +29,6 @@ class FormController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(FormRequest $request)
@@ -77,42 +69,9 @@ class FormController extends Controller
     {
         try {
             $form = Form::with(relations: ['allowedDomains', 'questions'])->where('slug', $slug)->first();
-            if (!$form){
-                return $this->responseWithError('Form not found', 404, 'Not found');
-            }
-            $domain = explode('@', Auth::user()->email);
-            foreach ($form->allowedDomains as $value) {
-                if ($value->domain != $domain[1]) {
-                    return $this->responseWithError('Forbidden access', 403, 'Forbidden');
-                }
-            }
             return $this->responseWithSuccess(new FormResource($form), "Get form success", 'form');
         } catch (\Exception $e) {
             return $this->responseWithError('Unknown error', 500, $e->getMessage());
         }
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Form $form)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Form $form)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Form $form)
-    {
-        //
     }
 }
