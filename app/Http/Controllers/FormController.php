@@ -8,7 +8,7 @@ use App\Models\AllowedDomain;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\FormResource;
-use App\Http\Requests\Forms\FormRequest;
+use App\Http\Requests\FormRequest;
 use Illuminate\Validation\ValidationException;
 
 class FormController extends Controller
