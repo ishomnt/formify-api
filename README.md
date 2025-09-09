@@ -25,7 +25,7 @@
 
 1.  **Kloning Repositori:**
     ```bash
-    git clone [https://github.com/ishomnt/formify-api.git](https://github.com/ishomnt/formify-api.git)
+    git clone https://github.com/ishomnt/formify-api.git
     cd formify-api
     ```
 
