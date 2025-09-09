@@ -23,7 +23,7 @@ class FormRequest extends FormRequestHttp
     {
         return [
             'name' => ['required', 'string'],
-            'slug' => ['required','string', 'unique:forms,slug'],
+            'slug' => ['required','string', 'unique:forms,slug', 'alpha_dash'],
             'allowed_domains' => ['array']
         ];
     }
