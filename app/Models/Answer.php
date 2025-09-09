@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Answer extends Model
 {
+    protected $guarded = ['id'];
 
-
-    public function responses(){
-        return $this->hasMany(Response::class);
+    public function response(){
+        return $this->belongsTo(Response::class);
     }
 
-    public function questions(){
-        return $this->hasMany(Question::class);
+    public function question(){
+        return $this->belongsTo(Question::class);
     }
 }

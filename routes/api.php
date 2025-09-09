@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\ResponseController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -21,5 +22,10 @@ Route::middleware('auth:sanctum')->prefix('v1/')->group(function () {
     Route::middleware('allowedDomain')->prefix('forms')->group(function () {
         Route::post('/{slug}/questions', [QuestionController::class, 'store'])->name('questions.store');
         Route::delete('/{slug}/questions/{question}', [QuestionController::class, 'destroy'])->name('questions.destroy');
+    });
+
+    Route::middleware('allowedDomain')->prefix('forms')->group(function () {
+        Route::get('/{slug}/responses', [ResponseController::class, 'index'])->name('responses.index');
+        Route::post('/{slug}/responses', [ResponseController::class, 'store'])->name('responses.store');
     });
 });
